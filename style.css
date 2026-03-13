@@ -1,0 +1,607 @@
+/* 1. Reset y Estilos Generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #000;
+    color: white;
+}
+
+/* 2. Header con Imagen de Fondo */
+.main-header {
+    height: 90vh;
+    width: 100%;
+    background-image: url('img/crazy.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center; 
+    position: relative;
+}
+
+/* 3. Franja Traslúcida */
+.logo-strip {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.center-content {
+    text-align: center;
+    padding: 0 20px; /* Para que no toque los bordes en celus */
+}
+
+/* 4. Logo - Mejorado para que no exceda la pantalla */
+.band-logo {
+    width: 100%;
+    max-width: 850px; /* En PC mide 850px, en celular se achica al 100% */
+    height: auto;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sub-title {
+    font-size: 14px;
+    letter-spacing: 6px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.separator {
+    margin: 0 15px;
+}
+
+/* 5. Navegación Inferior (PC) */
+.footer-nav {
+    position: fixed; /* Esto es lo que lo deja estático */
+    bottom: 0;       /* Lo pega al fondo de la pantalla */
+    left: 0;
+    width: 100%;     /* Asegura que ocupe todo el ancho */
+    z-index: 999;    /* Para que siempre esté por encima de los videos */
+    height: auto; /* Dejamos que respire */
+    background-color: #0a0a0a; /* Un gris casi negro para diferenciarlo del fondo puro */
+    padding: 20px 0; /* Más espacio arriba y abajo para que no se vea apretado */
+    border-top: 1px solid #222; /* Una línea divisoria elegante */
+    display: flex;
+    flex-direction: column; /* Ponemos los links arriba y quizás un copyright abajo */
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px; /* Espacio equilibrado entre links */
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+
+.footer-nav a {
+    color: #888; /* Un gris claro para los links */
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 400;
+    transition: 0.3s;
+}
+
+/* Efecto Hover: Cuando pasás el mouse se pone blanco y brilla */
+.footer-nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Para que en el celu se vea ordenado */
+@media (max-width: 768px) {
+    .footer-nav {
+        padding: 30px 20px;
+    }
+    .footer-nav ul {
+        gap: 20px;
+    }
+}
+/* --- 6. SECCIÓN RESPONSIVE (Móviles) --- */
+
+@media (max-width: 768px) {
+    .main-header {
+        height: 85vh; /* Un poquito menos para que entre el menú */
+    }
+
+    .logo-strip {
+        padding: 30px 10px;
+    }
+
+    .band-logo {
+        max-width: 280px; /* En celular el logo se achica a un tamaño real */
+    }
+
+    .sub-title {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .separator {
+        margin: 0 5px;
+    }
+
+    .footer-nav {
+        height: auto;
+        padding: 20px 10px;
+    }
+
+    .footer-nav ul {
+        gap: 20px;
+        flex-wrap: wrap; /* Si son muchos links, se ponen uno abajo del otro */
+        justify-content: center;
+    }
+
+    .footer-nav a {
+        font-size: 10px;
+    }
+}
+
+/* Agregá esto para que el contenido no quede escondido detrás del footer fijo */
+body {
+    margin-bottom: 80px; /* Dale un espacio igual o un poquito mayor al alto del footer */
+}
+
+/* Si tenés el botón de música en el celu, subilo un poquito más para que no se pise con el footer */
+@media (max-width: 768px) {
+    .btn-audio {
+        bottom: 100px !important; /* Lo subimos para que flote arriba del nuevo footer fijo */
+    }
+}
+
+/* --- LÓGICA DE EFECTOS POR DISPOSITIVO --- */
+
+/* 1. EFECTO PARA COMPUTADORAS (Cuando hay mouse) */
+@media (min-width: 769px) {
+    .center-content {
+        perspective: 1000px;
+    }
+    
+    .band-logo {
+        transition: transform 0.5s ease-out, filter 0.5s ease;
+    }
+
+    .band-logo:hover {
+        /* Inclinación 3D */
+        transform: rotateX(10deg) rotateY(15deg) scale(1.05);
+        filter: drop-shadow(0 20px 30px rgba(0,0,0,0.9));
+    }
+}
+
+/* 2. EFECTO DE LUZ PARA CELULARES (Animación de pulso de luz) */
+@media (max-width: 768px) {
+    .band-logo {
+        /* Creamos un efecto de luz suave y constante */
+        animation: neonGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes neonGlow {
+        0% {
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2)) brightness(1);
+        }
+        50% {
+            /* El "reflector" se enciende: más brillo y más sombra blanca */
+            filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.8)) brightness(1.3);
+            transform: scale(1.02); /* Un pequeño pulso de tamaño */
+        }
+        100% {
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2)) brightness(1);
+        }
+    }
+}
+
+/* Botón de música flotante */
+.btn-audio {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 1px solid white;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-audio:hover {
+    background: white;
+    color: black;
+}
+
+/* En mobile lo bajamos un poco para que no tape nada */
+@media (max-width: 768px) {
+    .btn-audio {
+        /* Cambiamos bottom por top */
+        bottom: auto !important; 
+        top: 20px !important;    /* Lo pegamos arriba igual que en PC */
+        right: 20px;
+        padding: 8px 15px;       /* Un poquito más chico para mobile */
+        font-size: 10px;
+    }
+}
+
+/* ----------------------------------*/
+/* Botón base */
+/* ----------------------------------*/
+/* --- BOTÓN CON AMBOS EFECTOS --- */
+.btn-audio {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: #000;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+}
+
+/* Efecto Radar (Se mantiene siempre) */
+.btn-audio::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(255, 0, 0, 0.4);
+    border-radius: 50px;
+    z-index: -1;
+    animation: pulse-radar 2s infinite;
+}
+
+/* Las barritas de Instagram (Ocultas al inicio) */
+.wave-container {
+    display: none; /* Se oculta */
+    align-items: flex-end;
+    gap: 3px;
+    height: 14px;
+    margin-left: 10px;
+}
+
+.bar {
+    width: 3px;
+    height: 100%;
+    background-color: white;
+    border-radius: 2px;
+}
+
+/* --- ESTADO CUANDO SUENA (PLAYING) --- */
+.playing {
+    background: #fff !important; /* El botón se vuelve blanco */
+    color: #000 !important; /* El texto y las barras se vuelven negros */
+}
+/* Forzamos que la onda expansiva siga siendo roja */
+.playing::after {
+    background: rgba(255, 0, 0, 0.6); /* La onda se vuelve blanca */
+}
+
+.playing .wave-container {
+    display: flex; /* Aparecen las barras */
+}
+/* Las barritas de sonido también en negro para que resalten sobre el blanco */
+.playing .bar {
+    background-color: #000; /* Barras negras sobre fondo blanco */
+    animation: soundWave 0.6s infinite alternate;
+}
+
+/* Animaciones */
+@keyframes pulse-radar {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes soundWave {
+    0% { height: 3px; }
+    100% { height: 14px; }
+}
+
+/* Delays para las barras */
+.bar:nth-child(1) { animation-delay: 0.1s; }
+.bar:nth-child(2) { animation-delay: 0.3s; }
+.bar:nth-child(3) { animation-delay: 0.2s; }
+.bar:nth-child(4) { animation-delay: 0.4s; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .btn-audio { top: auto; bottom: 11vh; right: 20px; }
+}
+
+/* ---------------------------------------------- */
+/* SECCION VIDEOS */
+/* ---------------------------------------------- */
+
+.video-section {
+    padding: 60px 20px;
+    background-color: #000;
+    text-align: center;
+    padding-bottom: 150px !important;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 24px;
+    letter-spacing: 5px;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos videos por fila en PC */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.video-item {
+    position: relative;
+    padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+    height: 0;
+    overflow: hidden;
+    border: 1px solid #333; /* Un borde sutil para que parezca un cuadro */
+}
+
+.video-item iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Responsive para celulares: Un video por fila */
+body {
+    /* Este margen debe ser igual o mayor a la altura de tu footer */
+    margin-bottom: 120px; 
+}
+
+@media (max-width: 768px) {
+    body {
+        /* En mobile el footer suele ser más alto por los textos apilados */
+        margin-bottom: 160px; 
+    }
+}
+
+/*--------SPLASH--------------------------*/
+#splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Por encima de TODO */
+    transition: opacity 1s ease, visibility 1s;
+}
+
+.splash-content {
+    text-align: center;
+}
+
+.splash-title {
+    color: #fff;
+    font-size: 20px;
+    letter-spacing: 8px;
+    margin-bottom: 10px;
+    font-weight: 300;
+    animation: fadePulse 2s infinite;
+}
+
+.splash-subtitle {
+    color: #ff0000; /* Rojo rockero */
+    font-size: 12px;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+}
+
+.loader-line {
+    width: 0;
+    height: 2px;
+    background: #ff0000;
+    margin: 0 auto;
+    animation: loadProgress 2.5s forwards;
+}
+
+@keyframes loadProgress {
+    0% { width: 0; }
+    100% { width: 100px; }
+}
+
+@keyframes fadePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* Clase para ocultarlo con JS */
+.hidden-splash {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.nota-musical {
+    position: fixed; 
+    z-index: 999999 !important; /* Más alto que el splash y que todo */
+    font-size: 30px; 
+    color: #ff0000; 
+    pointer-events: none;
+    animation: volarYDesaparecer 1.5s ease-out forwards;
+    /* Para que se vea aunque el botón sea blanco */
+    text-shadow: 0 0 5px rgba(0,0,0,0.5); 
+}
+@keyframes volarYDesaparecer {
+    0% {
+        transform: translate(0, 0) scale(0.5) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        /* Usa las variables de JS y le suma una rotación loca */
+        transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) scale(2) rotate(360deg);
+        opacity: 0;
+    }
+}
+/*carrusel---------------------------------------------------------*/
+.carousel-section {
+    padding: 60px 0;
+    background: #000;
+    overflow: hidden; /* Evita que las fotos que sobresalen creen scroll */
+}
+
+.mySwiperCards {
+    width: 100%;
+    max-width: 300px; /* Al ser pequeño, las de los lados se pegan al centro */
+    margin: 0 auto;
+    overflow: visible; /* Permite que las fotos apiladas se vean por fuera del centro */
+}
+
+.mySwiperCards .swiper-slide {
+    width: 250px; /* Ancho de cada foto */
+    height: 400px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    background-color: #1a1a1a;
+}
+
+.mySwiperCards .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 1px solid #333; /* Un borde sutil para que se separen en el fondo negro */
+}
+/*FIN carrusel---------------------------------------------------------*/
+
+/* Color de los puntitos del carrusel */
+.swiper-pagination-bullet {
+    background: #a0d1b6 !important;
+}
+
+/* Título centrado igual que el de videos */
+.carousel-section .section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* ------------------------------------------------------------- */
+/* ANIMACION */
+/* ------------------------------------------------------------- */
+/* Personaje Flotante */
+.anime-pogo-flotante {
+    position: fixed; /* Lo fija a la pantalla, no a la sección */
+    bottom: 20px; /* Separación de abajo */
+    right: 20px; /* Separación de la derecha */
+    width: 120px; /* Tamaño del personaje */
+    height: auto;
+    z-index: 1000; /* Siempre por encima de todo */
+    cursor: pointer; /* Parezca un botón */
+    transition: all 0.5s ease; /* Para que la aparición sea suave */
+    
+    /* Efecto de brillo/sticker rockero */
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
+}
+
+.anime-pogo-flotante img {
+    width: 100%;
+    height: auto;
+}
+
+/* Clase para ocultarlo (Se usa con JS) */
+.hidden-anime {
+    opacity: 0;
+    transform: translateY(20px); /* Lo empuja un poco hacia abajo */
+    pointer-events: none; /* No se puede tocar si está oculto */
+}
+
+/* En celulares, lo achicamos un poco más */
+@media (max-width: 768px) {
+    .anime-pogo-flotante {
+        width: 90px;
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
+.anime-pogo-flotante:hover {
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.7));
+    transform: scale(1.05); /* Se agranda un toque */
+}
+
+/* --- EFECTO INCLINACIÓN 3D (Solo en PC) --- 
+.center-content {
+    perspective: 1000px; /* Clave para el efecto 3D 
+}
+
+.band-logo {
+    transition: transform 0.5s ease-out;
+}
+
+.band-logo:hover {
+    transform: rotateX(10deg) rotateY(15deg) scale(1.05);
+    filter: drop-shadow(0 15px 15px rgba(0,0,0,0.8));
+}
+
+/* --- EFECTO PULSO --- 
+.band-logo {
+    animation: pulsoHumo 4s infinite;
+}
+
+@keyframes pulsoHumo {
+    0% {
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+        opacity: 0.9;
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.7));
+        opacity: 1;
+    }
+    100% {
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+        opacity: 0.9;
+    }
+}
+
+/* --- EFECTO GLITCH  --- 
+.band-logo {
+    position: relative;
+    animation: glitch 2s infinite;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); text-shadow: none; }
+    20% { transform: translate(-3px, 3px); text-shadow: 3px 0 red, -3px 0 blue; }
+    40% { transform: translate(3px, -3px); text-shadow: 3px 0 red, -3px 0 blue; }
+    60% { transform: translate(-3px, -3px); text-shadow: 3px 0 blue, -3px 0 red; }
+    80% { transform: translate(3px, 3px); text-shadow: 3px 0 blue, -3px 0 red; }
+    100% { transform: translate(0); text-shadow: none; }
+}

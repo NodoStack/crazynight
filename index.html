@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banda | Press Kit</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<body>
+    <!--SPLASH----------->
+    <div id="splash">
+    <div class="splash-content">
+        <h1 class="splash-title">FELIZ CUMPLE EMA</h1>
+        <p class="splash-subtitle">ÉXITOS</p>
+        <div class="loader-line"></div>
+    </div>
+</div>
+
+    <!--FIN SPLASH------->
+    <audio id="musicaBanda" loop>
+      <source src="audio/Noche Loca.mp3" type="audio/mpeg">
+       Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <button id="btnMusica" class="btn-audio">
+    <span id="iconoMusica">PLAY ♫</span>
+    <div id="waveContainer" class="wave-container">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+</button>
+
+    <section class="main-header">
+        <div class="logo-strip">
+            <div class="center-content">
+                <img src="img/logo1.png" alt="La Banda" class="band-logo">
+                <div class="sub-title">
+                    <span>HARD ROCK</span>
+                    <span class="separator">|</span>
+                    <span>SLEAZE METAL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <section id="fotos-banda" class="carousel-section">
+        <h2 class="section-title">BOOK DE FOTOS</h2>
+        
+        <div class="swiper mySwiperCards">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="img/EMA.png"></div>
+                <div class="swiper-slide"><img src="img/EMA2.png"></div>
+                <div class="swiper-slide"><img src="img/FRANK.png"></div>
+                <div class="swiper-slide"><img src="img/TODOS.png"></div>
+                <div class="swiper-slide"><img src="img/crazy.png"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="actuaciones" class="video-section">
+    <h2 class="section-title">VIVO EN EL ESCENARIO</h2>
+    <div class="video-grid">
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/gznPqrpN360" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/YeQC15mC2Cg" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+
+    <nav class="footer-nav">
+        <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">LA BANDA</a></li>
+            <li><a href="#fotos-banda">BOOK</a></li>
+            <li>
+                <a href="https://wa.me/5493518097087?text=Hola%20Crazy%20Night!%20Vi%20la%20web%20y%20quería%20consultar%20por%20una%20fecha..." 
+                   target="_blank" 
+                   class="nav-link contacto-directo">
+                   CONTACTO
+                </a>
+            </li>
+        </ul>
+
+        <div class="nodostack-signature" style="margin-top: 25px; border-top: 1px solid #1a1a1a; padding-top: 15px; width: 100%; text-align: center;">
+    <p style="font-size: 10px; color: #ccc; letter-spacing: 1px;">
+        © 2026 CRAZY NIGHT | DIGITAL EXPERIENCE BY 
+        <a href="https://nodostack.netlify.app/#" target="_blank" style="color: #a0d1b6; text-decoration: none; font-weight: bold; margin-left: 5px; transition: 0.3s;">
+            NodoStack
+        </a>
+    </p>
+</div>
+    </nav>
+
+<section id="fotos-banda" class="carousel-section">
+    <h2 class="section-title">BOOK DE FOTOS</h2>
+    </section>
+
+<div id="anime-button" class="anime-pogo-flotante hidden-anime">
+        <img src="img/POGO.gif" alt="Pogo Rock">
+    </div>
+    <script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+</body>
+</html>
