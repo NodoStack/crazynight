@@ -10,6 +10,7 @@ body, html {
     font-family: 'Montserrat', sans-serif;
     background-color: #000;
     color: white;
+    overflow-x: hidden;
 }
 
 /* 2. Header con Imagen de Fondo */
@@ -472,33 +473,46 @@ body {
     }
 }
 /*carrusel---------------------------------------------------------*/
+/*carrusel---------------------------------------------------------*/
 .carousel-section {
-    padding: 60px 0;
+    padding: 80px 0;
     background: #000;
-    overflow: hidden; /* Evita que las fotos que sobresalen creen scroll */
+    /* IMPORTANTE: overflow visible para que se vean las fotos de los lados */
+    overflow: visible !important; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
 }
 
 .mySwiperCards {
-    width: 100%;
-    max-width: 300px; /* Al ser pequeño, las de los lados se pegan al centro */
-    margin: 0 auto;
-    overflow: visible; /* Permite que las fotos apiladas se vean por fuera del centro */
+    /* El contenedor mide lo mismo que la foto para que el centro sea perfecto */
+    width: 280px !important; 
+    margin: 0 auto !important;
+    overflow: visible !important; 
+    padding: 60px 0;
 }
 
 .mySwiperCards .swiper-slide {
-    width: 250px; /* Ancho de cada foto */
+    width: 280px !important; 
     height: 400px;
     border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0,0,0,0.8);
-    background-color: #1a1a1a;
+    background-color: #000;
+    transition: all 0.4s ease;
+    margin: 0 !important;
 }
 
 .mySwiperCards .swiper-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border: 1px solid #333; /* Un borde sutil para que se separen en el fondo negro */
+    border: 1px solid #333;
+}
+
+/* La foto central se agranda */
+.mySwiperCards .swiper-slide-active {
+    transform: scale(1.2) !important;
+    z-index: 20;
 }
 /*FIN carrusel---------------------------------------------------------*/
 
