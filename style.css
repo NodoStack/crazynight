@@ -626,6 +626,79 @@ body {
 }
 /* -------------FIN TOOLTIP-LINK------------------------------------------------------
 
+/* -----------------------------------------
+/* Estilo para  NodoStack */
+/* -----------------------------------------*/
+/* Contenedor principal de la marca */
+.contenedor-marca-brillante {
+    color: #98FF98; /* Verde Menta */
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 5px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Estilo para cada letra individual */
+.contenedor-marca-brillante span {
+    display: inline-block; /* Obligatorio para poder animar el tamaño */
+    position: relative;
+    
+    /* Animación combinada: Lupa de luz + Pulso Neón */
+    /* Mantenemos los 6s para un barrido lento y elegante */
+    animation: efecto-lupa-luz 6s infinite, pulso-neon 3s infinite ease-in-out;
+}
+
+/* Sincronización del retraso de la animación para cada letra */
+/* Esto crea la onda de luz que viaja a través del texto */
+.contenedor-marca-brillante span:nth-child(1) { animation-delay: 0.1s; } /* N */
+.contenedor-marca-brillante span:nth-child(2) { animation-delay: 0.2s; } /* o */
+.contenedor-marca-brillante span:nth-child(3) { animation-delay: 0.3s; } /* d */
+.contenedor-marca-brillante span:nth-child(4) { animation-delay: 0.4s; } /* o */
+.contenedor-marca-brillante span:nth-child(5) { animation-delay: 0.5s; } /* S */
+.contenedor-marca-brillante span:nth-child(6) { animation-delay: 0.6s; } /* t */
+.contenedor-marca-brillante span:nth-child(7) { animation-delay: 0.7s; } /* a */
+.contenedor-marca-brillante span:nth-child(8) { animation-delay: 0.8s; } /* c */
+.contenedor-marca-brillante span:nth-child(9) { animation-delay: 0.9s; } /* k */
+
+/* ==========================================================
+   HEMOS ELIMINADO EL BLOQUE .contenedor-marca-brillante::before
+   AQUÍ PARA QUITAR EL RECTÁNGULO CUADRADO.
+   ========================================================== */
+
+/* Animación: Efecto de Lupa y Brillo sincronizado */
+@keyframes efecto-lupa-luz {
+    0%, 100% {
+        transform: scale(1); /* Tamaño normal */
+        color: #98FF98; /* Color Verde Menta normal */
+        text-shadow: none;
+    }
+    /* El momento exacto en que pasa la onda de luz */
+    /* La letra se agranda y se ilumina a blanco */
+    10%, 15% {
+        transform: scale(1.3); /* ¡EFECTO LUPA! Agranda la letra por la que pasa */
+        color: #ffffff; /* La letra se vuelve blanca para simular la luz */
+        text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 25px rgba(152, 255, 152, 0.8);
+    }
+    20%, 95% {
+        transform: scale(1); /* Vuelve al tamaño normal */
+        color: #98FF98;
+        text-shadow: none;
+    }
+}
+
+/* Animación: Pulso Neón (independiente de la lupa) */
+@keyframes pulso-neon {
+    0%, 100% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.2);
+    }
+}
+
 /* --- EFECTO INCLINACIÓN 3D (Solo en PC) --- 
 .center-content {
     perspective: 1000px; /* Clave para el efecto 3D 
