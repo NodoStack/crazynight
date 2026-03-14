@@ -11,6 +11,7 @@ body, html {
     background-color: #000;
     color: white;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 /* 2. Header con Imagen de Fondo */
@@ -570,6 +571,60 @@ body {
     filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.7));
     transform: scale(1.05); /* Se agranda un toque */
 }
+
+/* -------------------------------------------------------------------
+     ESTILO DEL TOOLTIP-LINK 
+/* -------------------------------------------------------------------
+
+/* Contenedor del link */
+.tooltip-link {
+    position: relative;
+    cursor: not-allowed; /* Cambia el mouse a un círculo de prohibido */
+}
+
+/* El cartelito (oculto por defecto) */
+.tooltip-link::after {
+    content: attr(data-tooltip); /* Toma el texto del HTML */
+    position: absolute;
+    bottom: 150%; /* Lo posiciona arriba del link */
+    left: 50%;
+    transform: translateX(-50%) scale(0); /* Empieza invisible y chiquito */
+    background-color: #ffcc00; /* Amarillo vibrante */
+    color: #000; /* Letras negras para contraste */
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* La flechita del cartelito */
+.tooltip-link::before {
+    content: '';
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #ffcc00 transparent transparent transparent;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+/* Cuando pasás el mouse... ¡Aparece! */
+.tooltip-link:hover::after,
+.tooltip-link:hover::before {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+/* -------------FIN TOOLTIP-LINK------------------------------------------------------
 
 /* --- EFECTO INCLINACIÓN 3D (Solo en PC) --- 
 .center-content {

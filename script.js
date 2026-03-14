@@ -1,12 +1,12 @@
 window.addEventListener('load', () => {
     
     // --- 1. LÓGICA DEL SPLASH SCREEN ---
-    const splash = document.getElementById('splash');
-    if (splash) {
-        setTimeout(() => {
-            splash.classList.add('hidden-splash');
-        }, 3000); 
-    }
+    //const splash = document.getElementById('splash');
+    //if (splash) {
+      //  setTimeout(() => {
+        //    splash.classList.add('hidden-splash');
+       // }, 3000); 
+    //}
 
     // --- 2. LÓGICA DE MÚSICA, EFECTOS Y ANIME ---
     const musica = document.getElementById('musicaBanda');
