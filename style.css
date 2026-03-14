@@ -699,6 +699,57 @@ body {
     }
 }
 
+
+/* =============================================== */
+/* CUENTA REGRESIVA DE SHOWS
+/* =============================================== */
+
+.contenedor-cuenta-regresiva {
+    background: #000;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 2px solid #98FF98; /* Tu verde menta */
+}
+
+#reloj-regresivo {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.bloque-tiempo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #111;
+    padding: 15px;
+    border-radius: 8px;
+    min-width: 80px;
+    border: 1px solid #222;
+}
+
+.bloque-tiempo span {
+    font-size: 32px;
+    font-weight: bold;
+    color: #98FF98; /* Verde Menta */
+    text-shadow: 0 0 10px rgba(152, 255, 152, 0.5);
+}
+
+.bloque-tiempo small {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #888;
+}
+
+.lugar-show {
+    font-size: 14px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    color: #ccc;
+}
+
 /* --- EFECTO INCLINACIÓN 3D (Solo en PC) --- 
 .center-content {
     perspective: 1000px; /* Clave para el efecto 3D 

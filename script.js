@@ -87,4 +87,40 @@ window.addEventListener('load', () => {
         },
     });
 
+// --- LÓGICA DE CUENTA REGRESIVA INTELIGENTE ---
+const fechaObjetivo = new Date('March 26, 2026 23:00:00').getTime();
+
+const actualizarReloj = setInterval(() => {
+    const ahora = new Date().getTime();
+    const distancia = fechaObjetivo - ahora;
+
+    // Si todavía falta tiempo, calculamos y mostramos
+    if (distancia > 0) {
+        const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+        const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+        // Actualizamos el HTML (con el .toString().padStart para que siempre haya 2 números)
+        document.getElementById('dias').innerText = dias.toString().padStart(2, '0');
+        document.getElementById('horas').innerText = horas.toString().padStart(2, '0');
+        document.getElementById('minutos').innerText = minutos.toString().padStart(2, '0');
+        document.getElementById('segundos').innerText = segundos.toString().padStart(2, '0');
+    } 
+    // SI YA PASÓ LA HORA (Las 23:00 del 20 de marzo)
+    else {
+        clearInterval(actualizarReloj); // Detenemos el reloj
+        const seccion = document.getElementById('seccion-contador');
+        
+        if (seccion) {
+            // Lo ocultamos con estilo
+            seccion.style.transition = "opacity 1s ease";
+            seccion.style.opacity = "0";
+            setTimeout(() => {
+                seccion.style.display = 'none'; // Desaparece del código visual
+            }, 1000);
+        }
+    }
+}, 1000);
 }); // CIERRE FINAL DEL WINDOW LOAD
+
