@@ -107,7 +107,7 @@ const actualizarReloj = setInterval(() => {
         document.getElementById('minutos').innerText = minutos.toString().padStart(2, '0');
         document.getElementById('segundos').innerText = segundos.toString().padStart(2, '0');
     } 
-    // SI YA PASÓ LA HORA (Las 23:00 del 20 de marzo)
+    // SI YA PASÓ LA HORA (Las 23:00 del 26 de marzo)
     else {
         clearInterval(actualizarReloj); // Detenemos el reloj
         const seccion = document.getElementById('seccion-contador');
@@ -122,5 +122,27 @@ const actualizarReloj = setInterval(() => {
         }
     }
 }, 1000);
+
+// --- LÓGICA DE EVENTOS EN TIEMPO REAL :VIVO ---
+function controlarEventosEnVivo() {
+    const ahora = new Date();
+    const dia = ahora.getDate();
+    const mes = ahora.getMonth(); // Marzo es 2
+    const hora = ahora.getHours();
+
+    const cartelVivo = document.getElementById('cartel-en-vivo');
+
+    // Si es 21 de Marzo (pasada la medianoche del 20) 
+    // y la hora está entre las 00:00 y las 02:00
+    if (dia === 21 && mes === 2 && hora >= 0 && hora < 2) {
+        if (cartelVivo) cartelVivo.style.display = 'block';
+    } else {
+        if (cartelVivo) cartelVivo.style.display = 'none';
+    }
+}
+
+// Ejecutamos la función apenas carga y luego cada 1 minuto
+controlarEventosEnVivo();
+setInterval(controlarEventosEnVivo, 60000);
 }); // CIERRE FINAL DEL WINDOW LOAD
 
