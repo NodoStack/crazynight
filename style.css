@@ -754,6 +754,7 @@ body {
   estilo para cuando están en VIVO
   ======================================*/
   
+
 .cartel-vivo-estilo {
     background: #000;
     border: 2px solid #ff0000; /* Rojo pasión */
@@ -793,6 +794,124 @@ body {
     100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
 }
 
+
+/*================================================
+    REDES SOCIALES
+/*================================================*/    
+/* --- ESTILO GENERAL (Para todas las pantallas) --- */
+.redes-sociales-modernas {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Más espacio para que el cromo resalte */
+}
+
+.icono-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0 30px 30px 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: 65px; /* Un poco más ancho para el cromo */
+    height: 65px;
+    color: white;
+    font-size: 28px; /* Icono más grande */
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    /* Sombras base para el estado normal */
+    box-shadow: 
+        0 4px 10px rgba(0,0,0,0.4), 
+        inset 0 1px 1px rgba(255,255,255,0.2);
+}
+
+/* El texto oculto */
+.icono-social span {
+    position: absolute;
+    left: 70px; /* Fuera del círculo base */
+    opacity: 0;
+    visibility: hidden;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    font-weight: 800; /* Texto muy grueso */
+    text-transform: uppercase;
+    color: #fff; /* Texto blanco */
+    /* Sombra de texto profunda para legibilidad */
+    text-shadow: 0px 1px 3px rgba(0,0,0,1);
+    margin-left: 0;
+}
+
+/* --- EFECTO HOVER PARA PC (A partir de 769px) --- */
+/* --- EFECTO HOVER PARA PC (A partir de 769px) con ACABADO ESPEJO/CROMO --- */
+@media (min-width: 769px) {
+    .icono-social:hover {
+        width: 195px; /* Se expande */
+        margin-left: 15px; /* Separación de la pared */
+        justify-content: flex-start; /* Contenido a la izquierda */
+        padding-left: 20px; /* Espacio para el icono */
+        
+        /* --- ACABADO ESPEJO/CROMO DE ALTA DEFINICIÓN (Como el logo) --- */
+        /* Gradiente agresivo que simula el reflejo del horizonte */
+        background: linear-gradient(
+            180deg, 
+            #ffffff 0%,    /* Brillo superior puro */
+            #e0e0e0 40%,   /* Plata claro */
+            #111111 50%,   /* Línea de horizonte negra (contraste fuerte) */
+            #444444 51%,   /* Reflejo inferior oscuro */
+            #a0a0a0 85%,   /* Plata metálico */
+            #ffffff 100%   /* Brillo base puro */
+        );
+        
+        /* Borde plateado/blanco afilado */
+        border: 1px solid #ffffff;
+        
+        /* Sombras externas profundas y brillo interno para el relieve (biselado) */
+        box-shadow: 
+            0 12px 30px rgba(0,0,0,0.8), /* Sombra externa profunda */
+            inset 0 1px 0 rgba(255,255,255,1), /* Brillo superior interno puro */
+            inset 0 -1px 0 rgba(255,255,255,0.4), /* Brillo inferior interno */
+            inset 0 4px 5px rgba(255,255,255,0.8); /* Brillo para el bisel superior */
+        
+        /* Color del texto e icono: Blanco con brillo para legibilidad sobre el cromo */
+        color: #fff;
+        text-shadow: 0px 2px 4px rgba(0,0,0,1);
+    }
+
+    .icono-social:hover span {
+        opacity: 1;
+        visibility: visible;
+        left: 60px; /* Se desliza suavemente */
+    }
+}
+
+
+/* --- AJUSTES SOLO PARA MÓVILES (Hasta 768px) --- */
+@media (max-width: 768px) {
+    .redes-sociales-modernas {
+        gap: 12px;
+    }
+
+    .icono-social {
+        width: 55px; /* Tamaño circular móvil */
+        height: 55px;
+        font-size: 24px;
+        /* Sombras más simples */
+        box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+    }
+    
+    .icono-social span {
+        display: none;
+    }
+}
 /* --- EFECTO INCLINACIÓN 3D (Solo en PC) --- 
 .center-content {
     perspective: 1000px; /* Clave para el efecto 3D 

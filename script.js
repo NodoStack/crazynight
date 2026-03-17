@@ -144,5 +144,21 @@ function controlarEventosEnVivo() {
 // Ejecutamos la función apenas carga y luego cada 1 minuto
 controlarEventosEnVivo();
 setInterval(controlarEventosEnVivo, 60000);
+
+//REDES SOCIALES:
+document.querySelectorAll('.icono-social').forEach(boton => {
+    boton.addEventListener('mousemove', (e) => {
+        // En móviles desactivamos el magnetismo para evitar tirones
+        if (window.innerWidth > 768) {
+            const posicion = boton.getBoundingClientRect();
+            const x = e.pageX - posicion.left - posicion.width / 2;
+            const y = e.pageY - posicion.top - posicion.height / 2;
+            boton.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+        }
+    });
+    boton.addEventListener('mouseleave', () => {
+        boton.style.transform = `translate(0px, 0px)`;
+    });
+});
 }); // CIERRE FINAL DEL WINDOW LOAD
 
