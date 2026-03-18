@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banda | Press Kit</title>
+    <title>Crazy Night | Oficial Website | Sleaze & Hard Rock Band </title>
+    <meta name="description" content="Sitio oficial de Crazy Night. Explora nuestra música, próximos shows, galería de fotos y todo el poder del Hard Rock.">
+    <meta name="keywords" content="Crazy Night, Hard Rock, Sleaze Metal, Banda de Rock, Conciertos Rock, Rock en vivo">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="apple-touch-icon" href="img/favicon.png">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -39,7 +43,7 @@
     <section id= "inicio" class="main-header">
         <div class="logo-strip">
             <div class="center-content">
-                <img src="img/logo1.png" alt="La Banda" class="band-logo">
+                <img src="img/logo1.png" alt="logo de La Banda de rock Crazy Night" class="band-logo">
                 <div class="sub-title">
                     <span>HARD ROCK</span>
                     <span class="separator">|</span>
@@ -85,11 +89,19 @@
         
         <div class="swiper mySwiperCards">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="img/EMA.png"></div>
-                <div class="swiper-slide"><img src="img/EMA2.png"></div>
+                <div class="swiper-slide"><img src="img/EMA.png" alt="Imagen de Ema, baterista de Crazy Night"></div>
+                <div class="swiper-slide"><img src="img/EMA2.png" alt="Imagen de Ema, baterista de Crazy Night"></div>
                 <div class="swiper-slide"><img src="img/FRANK.png"></div>
-                <div class="swiper-slide"><img src="img/TODOS.png"></div>
+                <div class="swiper-slide"><img src="img/TODOS.png" alt="Imagen de todos los integrantes de Crazy Night"></div>
                 <div class="swiper-slide"><img src="img/crazy.png"></div>
+                <div class="swiper-slide"><img src="img/1.jpeg"></div>
+                <div class="swiper-slide"><img src="img/2.jpeg"></div>
+                <div class="swiper-slide"><img src="img/3.jpeg"></div>
+                <div class="swiper-slide"><img src="img/4.jpeg"></div>
+                <div class="swiper-slide"><img src="img/5.jpeg"></div>
+                <div class="swiper-slide"><img src="img/6.jpeg"></div>
+                <div class="swiper-slide"><img src="img/7.jpeg"></div>
+                <div class="swiper-slide"><img src="img/8.jpeg"></div>
             </div>
         </div>
     </section>
@@ -152,6 +164,26 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
     <script src="script.js"></script>
+
+  <script>
+    let alternar = false;
+    let iconInterval;
+    const faviconNormal = "img/favicon.png";
+    const faviconBrillo = "img/favicon-brillo.png"; // Una versión más clara o con un aura
+
+    window.addEventListener("blur", () => {
+        iconInterval = setInterval(() => {
+            let link = document.querySelector("link[rel*='icon']");
+            link.href = alternar ? faviconNormal : faviconBrillo;
+            alternar = !alternar;
+        }, 500); // Cambia cada medio segundo
+    });
+
+    window.addEventListener("focus", () => {
+        clearInterval(iconInterval);
+        document.querySelector("link[rel*='icon']").href = faviconNormal;
+    });
+</script>
 
 </body>
 </html>
