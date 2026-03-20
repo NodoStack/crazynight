@@ -1136,7 +1136,45 @@ body {
         -webkit-text-stroke: 0.5px #fff; /* Borde más fino para que no se empaste */
     }
 }
+/*__________________________________________________________*/
 
+/* Estilos para el Instagram de los Integrantes */
+.member-insta {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #666; /* Gris discreto por defecto */
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 20; /* Para que sea cliqueable por encima de los efectos */
+}
+
+.member-insta i {
+    margin-right: 5px;
+}
+
+/* Cuando pasamos el mouse por la CARD, el Instagram se nota más */
+.member-card:hover .member-insta {
+    color: #ccc;
+}
+
+/* Cuando pasamos el mouse directo por el LINK de Instagram */
+.member-insta:hover {
+    color: #ff0000 !important; /* Rojo Crazy Night */
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+    transform: scale(1.05);
+}
+
+/* Ajuste para el cuadro de las dos guitarras */
+.insta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
 
 /* --- EFECTO INCLINACIÓN 3D (Solo en PC) --- 
 .center-content {
