@@ -936,7 +936,7 @@ body {
     /* Capa 2: Aura roja media */
     /* Capa 3: Resplandor ambiental grande */
     box-shadow: 
-        0 0 20px rgba(255, 0, 0, 0.15), 
+        0 0 20px rgba(202, 17, 17, 0.15), 
         0 0 60px rgba(255, 0, 0, 0.1), 
         0 0 120px rgba(255, 0, 0, 0.05);
     
@@ -1174,6 +1174,100 @@ body {
     flex-direction: column;
     gap: 5px;
     align-items: center;
+}
+
+/*==============================================
+   CONTENEDOR AVISO DE QUE ESTAN EN VIVO
+/* Contenedor del estado Live (No flotante) */
+/*==============================================*/
+.live-flame-strip {
+    width: 100%;
+    background: #000;
+    border-top: 2px solid #ff0000;
+    border-bottom: 2px solid #ff0000;
+    padding: 20px 0;
+    margin: 40px 0;
+    position: relative;
+    z-index: 5;
+
+    /* SOMBRAS DE ALTA INTENSIDAD (Encadenadas para que no sean tenues) */
+    box-shadow: 
+        0 0 20px #ff0000,            /* Núcleo brillante */
+        0 0 40px rgba(255, 0, 0, 0.8), /* Cuerpo de la llama */
+        0 0 90px rgba(255, 0, 0, 0.6); /* Aura expansiva */
+    
+    /* Animación más agresiva para que parezca que el fuego se mueve */
+    animation: llamarada-viva 2s ease-in-out infinite;
+}
+
+@keyframes llamarada-viva {
+    0% {
+        box-shadow: 
+            0 0 20px #ff0000, 
+            0 0 40px rgba(255, 0, 0, 0.8), 
+            0 0 80px rgba(255, 0, 0, 0.4);
+        transform: scale(1);
+    }
+    50% {
+        /* En el pico de la animación, la sombra se expande y se vuelve más opaca */
+        box-shadow: 
+            0 0 30px #ff0000, 
+            0 0 70px rgba(255, 0, 0, 0.9), 
+            0 0 140px rgba(255, 0, 0, 0.7);
+        transform: scale(1.01); /* Un leve crecimiento físico para dar impacto */
+    }
+    100% {
+        box-shadow: 
+            0 0 20px #ff0000, 
+            0 0 40px rgba(255, 0, 0, 0.8), 
+            0 0 80px rgba(255, 0, 0, 0.4);
+        transform: scale(1);
+    }
+}
+.marquee-content {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Esto lo centra horizontalmente */
+    gap: 20px;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;             /* Ocupa todo el ancho de la franja */
+    margin: 0 auto;          /* Centra el bloque en sí mismo */
+    text-align: center;      /* Refuerzo para el texto */
+}
+
+/* Para que el texto no se pierda en tanto brillo rojo */
+.marquee-content p {
+    color: #fff;
+    text-shadow: 2px 2px 4px #000; /* Sombra negra tras el texto para legibilidad */
+    font-size: 1.3rem;
+    font-weight: 900;
+}
+
+.venue {
+    color: #ff0000;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+/* Punto de fuego con animación intermitente rápida */
+.live-dot-fire {
+    width: 10px;
+    height: 10px;
+    background-color: #ff0000;
+    border-radius: 50%;
+    animation: blinker-rapid 0.8s linear infinite;
+}
+
+@keyframes blinker-rapid {
+    50% { opacity: 0; }
+}
+
+/* En móviles bajamos el tamaño del texto */
+@media (max-width: 768px) {
+    .marquee-content p {
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+    .live-dot-fire { display: none; } /* Sacamos los puntos si no hay espacio */
 }
 
 /* --- EFECTO INCLINACIÓN 3D (Solo en PC) --- 

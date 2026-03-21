@@ -129,17 +129,26 @@ function controlarEventosEnVivo() {
     const dia = ahora.getDate();
     const mes = ahora.getMonth(); // Marzo es 2
     const hora = ahora.getHours();
+    const minutos = ahora.getMinutes(); // Agregamos los minutos
 
     const cartelVivo = document.getElementById('cartel-en-vivo');
 
-    // Si es 21 de Marzo (pasada la medianoche del 20) 
-    // y la hora está entre las 00:00 y las 02:00
-    if (dia === 21 && mes === 2 && hora >= 0 && hora < 2) {
-        if (cartelVivo) cartelVivo.style.display = 'block';
+    // CONDICIÓN PARA PRUEBA: 21 de Marzo (mes 2) entre las 14:40 y las 14:42
+    if (dia === 21 && mes === 2 && hora === 15 && (minutos >= 1 && minutos < 40)) {
+        if (cartelVivo) {
+            cartelVivo.style.display = 'block';
+            console.log("¡CRAZY NIGHT EN VIVO!"); // Para que lo veas en la consola (F12)
+        }
     } else {
-        if (cartelVivo) cartelVivo.style.display = 'none';
+        if (cartelVivo) {
+            cartelVivo.style.display = 'none';
+        }
     }
 }
+
+// IMPORTANTE: Asegúrate de que esta función se ejecute cada 1 minuto para chequear el tiempo
+setInterval(controlarEventosEnVivo, 10000); // Chequea cada 10 segundos
+controlarEventosEnVivo(); // Ejecuta una vez al cargar la página
 
 // Ejecutamos la función apenas carga y luego cada 1 minuto
 controlarEventosEnVivo();
