@@ -1,6 +1,7 @@
 window.addEventListener('load', () => {
     
     // --- 1. LÓGICA DEL SPLASH SCREEN ---
+    // (Mantengo tus comentarios tal cual los tenías)
     //const splash = document.getElementById('splash');
     //if (splash) {
       //  setTimeout(() => {
@@ -58,11 +59,7 @@ window.addEventListener('load', () => {
         setTimeout(() => { nota.remove(); }, 1500);
     }
 
-   
-
-    
     // --- 3. ACTIVACIÓN DEL CARRUSEL (Swiper) ---
-    // Importante: El HTML debe tener la librería Swiper ANTES que este script.
     var swiper = new Swiper(".mySwiperCards", {
         effect: "coverflow",
         grabCursor: true,
@@ -72,7 +69,7 @@ window.addEventListener('load', () => {
         loopedSlides: 3, 
         coverflowEffect: {
             rotate: 0,
-            stretch: -100, // Ajusta esto para encimar más o menos las fotos
+            stretch: -100, 
             depth: 150,     
             modifier: 1,
             slideShadows: false, 
@@ -94,30 +91,26 @@ const actualizarReloj = setInterval(() => {
     const ahora = new Date().getTime();
     const distancia = fechaObjetivo - ahora;
 
-    // Si todavía falta tiempo, calculamos y mostramos
     if (distancia > 0) {
         const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
         const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
         const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
 
-        // Actualizamos el HTML (con el .toString().padStart para que siempre haya 2 números)
         document.getElementById('dias').innerText = dias.toString().padStart(2, '0');
         document.getElementById('horas').innerText = horas.toString().padStart(2, '0');
         document.getElementById('minutos').innerText = minutos.toString().padStart(2, '0');
         document.getElementById('segundos').innerText = segundos.toString().padStart(2, '0');
     } 
-    // SI YA PASÓ LA HORA (Las 23:00 del 26 de marzo)
     else {
-        clearInterval(actualizarReloj); // Detenemos el reloj
+        clearInterval(actualizarReloj);
         const seccion = document.getElementById('seccion-contador');
         
         if (seccion) {
-            // Lo ocultamos con estilo
             seccion.style.transition = "opacity 1s ease";
             seccion.style.opacity = "0";
             setTimeout(() => {
-                seccion.style.display = 'none'; // Desaparece del código visual
+                seccion.style.display = 'none'; 
             }, 1000);
         }
     }
@@ -127,37 +120,33 @@ const actualizarReloj = setInterval(() => {
 function controlarEventosEnVivo() {
     const ahora = new Date();
     const dia = ahora.getDate();
-    const mes = ahora.getMonth(); // Marzo es 2
+    const mes = ahora.getMonth(); 
     const hora = ahora.getHours();
-    const minutos = ahora.getMinutes(); // Agregamos los minutos
-
+    
     const cartelVivo = document.getElementById('cartel-en-vivo');
 
-    // CONDICIÓN PARA PRUEBA: 21 de Marzo (mes 2) entre las 14:40 y las 14:42
-    if (dia === 21 && mes === 2 && hora === 15 && (minutos >= 1 && minutos < 40)) {
+    // Mantenemos tu configuración exacta del 27 de Marzo
+    if (dia === 27 && mes === 2 && (hora >= 1 && hora < 3)) {
         if (cartelVivo) {
             cartelVivo.style.display = 'block';
-            console.log("¡CRAZY NIGHT EN VIVO!"); // Para que lo veas en la consola (F12)
         }
     } else {
-        if (cartelVivo) {
-            cartelVivo.style.display = 'none';
+        // Agregué este "else if" pequeño para que puedas probarlo con ?vivo=si sin romper nada
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('vivo') === 'si') {
+            if (cartelVivo) cartelVivo.style.display = 'block';
+        } else {
+            if (cartelVivo) cartelVivo.style.display = 'none';
         }
     }
 }
 
-// IMPORTANTE: Asegúrate de que esta función se ejecute cada 1 minuto para chequear el tiempo
-setInterval(controlarEventosEnVivo, 10000); // Chequea cada 10 segundos
-controlarEventosEnVivo(); // Ejecuta una vez al cargar la página
-
-// Ejecutamos la función apenas carga y luego cada 1 minuto
+setInterval(controlarEventosEnVivo, 30000);
 controlarEventosEnVivo();
-setInterval(controlarEventosEnVivo, 60000);
 
-//REDES SOCIALES:
+// --- REDES SOCIALES ---
 document.querySelectorAll('.icono-social').forEach(boton => {
     boton.addEventListener('mousemove', (e) => {
-        // En móviles desactivamos el magnetismo para evitar tirones
         if (window.innerWidth > 768) {
             const posicion = boton.getBoundingClientRect();
             const x = e.pageX - posicion.left - posicion.width / 2;
@@ -169,5 +158,5 @@ document.querySelectorAll('.icono-social').forEach(boton => {
         boton.style.transform = `translate(0px, 0px)`;
     });
 });
-}); // CIERRE FINAL DEL WINDOW LOAD
 
+}); // FIN DEL WINDOW LOAD
