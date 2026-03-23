@@ -85,7 +85,7 @@ window.addEventListener('load', () => {
     });
 
 // --- LÓGICA DE CUENTA REGRESIVA INTELIGENTE ---
-const fechaObjetivo = new Date('March 26, 2026 23:00:00').getTime();
+const fechaObjetivo = new Date('March 26, 2026 23:30:00').getTime();
 
 const actualizarReloj = setInterval(() => {
     const ahora = new Date().getTime();
