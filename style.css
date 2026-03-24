@@ -1270,6 +1270,47 @@ body {
     .live-dot-fire { display: none; } /* Sacamos los puntos si no hay espacio */
 }
 
+/*==============================================
+   EFECTO RESPLANDOR ROJO AL FLAYER
+================================================*/
+
+/* Efecto de Resplandor para el Flyer */
+/* Resplandor Rojo Extremo para el Flyer */
+.flyer-resplandor {
+    width: 100%;
+    max-width: 420px; /* Un pelín más grande */
+    border: 2px solid #fff;
+    border-radius: 5px;
+    display: block;
+    margin: 40px auto; /* Más margen arriba y abajo para que el brillo respire */
+    
+    /* El "Glow" inicial ya es potente */
+    box-shadow: 0 0 20px #fff, 
+                0 0 40px #ff0000, 
+                0 0 80px #ff0000, 
+                0 0 100px rgba(255, 0, 0, 0.4);
+                
+    animation: pulso-infernal 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulso-infernal {
+    from {
+        box-shadow: 0 0 15px #fff, 
+                    0 0 30px #ff0000, 
+                    0 0 60px #ff0000, 
+                    0 0 80px rgba(255, 0, 0, 0.3);
+        transform: scale(1);
+    }
+    to {
+        /* Acá es donde el rojo explota */
+        box-shadow: 0 0 25px #fff, 
+                    0 0 50px #ff0000, 
+                    0 0 100px #ff0000, 
+                    0 0 150px rgba(255, 0, 0, 0.6);
+        transform: scale(1.03); /* Se nota un poquito más el movimiento */
+    }
+}
+
 /* --- EFECTO INCLINACIÓN 3D (Solo en PC) --- 
 .center-content {
     perspective: 1000px; /* Clave para el efecto 3D 
