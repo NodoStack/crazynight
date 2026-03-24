@@ -10,54 +10,58 @@ window.addEventListener('load', () => {
     //}
 
     // --- 2. LÓGICA DE MÚSICA, EFECTOS Y ANIME ---
-    const musica = document.getElementById('musicaBanda');
-    const btn = document.getElementById('btnMusica');
-    const icono = document.getElementById('iconoMusica');
-    const animeButton = document.getElementById('anime-button');
+const musica = document.getElementById('musicaBanda');
+const btn = document.getElementById('btnMusica');
+const icono = document.getElementById('iconoMusica');
+const animeButton = document.getElementById('anime-button');
 
-    if (btn && musica && animeButton) {
-        btn.addEventListener('click', () => {
-            if (musica.paused) {
-                // ACTIVAR MÚSICA
-                musica.play();
-                icono.innerText = "PAUSE";
-                btn.classList.add('playing');
-                animeButton.classList.remove('hidden-anime');
-                
-                // Explosión de notas musicales
-                for (let i = 0; i < 25; i++) { 
-                    setTimeout(crearNota, i * 40); 
-                }
-            } else {
-                // PAUSAR MÚSICA
-                musica.pause();
-                icono.innerText = "PLAY ♫";
-                btn.classList.remove('playing');
-                animeButton.classList.add('hidden-anime');
+// PRECARGA: Esto ayuda a que el audio esté listo más rápido
+if (musica) { musica.preload = "auto"; }
+
+if (btn && musica && animeButton) {
+    btn.addEventListener('click', () => {
+        if (musica.paused) {
+            // ACTIVAR MÚSICA
+            musica.play();
+            icono.innerText = "PAUSE";
+            btn.classList.add('playing');
+            animeButton.classList.remove('hidden-anime');
+            
+            // Explosión de notas musicales (COMO ANTES, AL HACER CLICK)
+            for (let i = 0; i < 25; i++) { 
+                setTimeout(crearNota, i * 40); 
             }
-        });
-    }
+        } else {
+            // PAUSAR MÚSICA
+            musica.pause();
+            icono.innerText = "PLAY ♫";
+            btn.classList.remove('playing');
+            animeButton.classList.add('hidden-anime');
+        }
+    });
+}
 
-    function crearNota() {
-        const notas = ['♫', '♪', '∮', '♩'];
-        const nota = document.createElement('div');
-        nota.classList.add('nota-musical');
-        nota.innerText = notas[Math.floor(Math.random() * notas.length)];
-        
-        const btnRect = btn.getBoundingClientRect();
-        nota.style.left = (btnRect.left + btnRect.width / 2) + 'px';
-        nota.style.top = (btnRect.top + btnRect.height / 2) + 'px';
-        
-        const xDir = (Math.random() - 0.5) * 400;
-        const yDir = (Math.random() - 0.5) * 400;
-        
-        nota.style.setProperty('--x', xDir);
-        nota.style.setProperty('--y', yDir);
-        nota.style.transform = `rotate(${Math.random() * 360}deg)`;
-        
-        document.body.appendChild(nota);
-        setTimeout(() => { nota.remove(); }, 1500);
-    }
+function crearNota() {
+    const notas = ['♫', '♪', '∮', '♩'];
+    const nota = document.createElement('div');
+    nota.classList.add('nota-musical');
+    nota.innerText = notas[Math.floor(Math.random() * notas.length)];
+    
+    const btnRect = btn.getBoundingClientRect();
+    nota.style.left = (btnRect.left + btnRect.width / 2) + 'px';
+    nota.style.top = (btnRect.top + btnRect.height / 2) + 'px';
+    
+    const xDir = (Math.random() - 0.5) * 400;
+    const yDir = (Math.random() - 0.5) * 400;
+    
+    // VOLVEMOS A TU FORMATO ORIGINAL (SIN PX)
+    nota.style.setProperty('--x', xDir);
+    nota.style.setProperty('--y', yDir);
+    nota.style.transform = `rotate(${Math.random() * 360}deg)`;
+    
+    document.body.appendChild(nota);
+    setTimeout(() => { nota.remove(); }, 1500);
+}
 
     // --- 3. ACTIVACIÓN DEL CARRUSEL (Swiper) ---
     var swiper = new Swiper(".mySwiperCards", {
