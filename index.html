@@ -56,33 +56,42 @@
   <div class="contenedor-principal-show" style="text-align: center;">
 
     <section id="seccion-contador" class="contenedor-cuenta-regresiva">
-        <h3>PRÓXIMO SHOW ⚡</h3>
-        <div id="reloj-regresivo">
-            <div class="bloque-tiempo">
-                <span id="dias">00</span>
-                <small>DÍAS</small>
-            </div>
-            <div class="bloque-tiempo">
-                <span id="horas">00</span>
-                <small>HORAS</small>
-            </div>
-            <div class="bloque-tiempo">
-                <span id="minutos">00</span>
-                <small>MIN</small>
-            </div>
-            <div class="bloque-tiempo">
-                <span id="segundos">00</span>
-                <small>SEG</small>
-            </div>
+    <h3 id="titulo-show">PRÓXIMO SHOW ⚡</h3>
+
+    <div id="reloj-regresivo">
+        <div class="bloque-tiempo"><span id="dias">00</span><small>DÍAS</small></div>
+        <div class="bloque-tiempo"><span id="horas">00</span><small>HORAS</small></div>
+        <div class="bloque-tiempo"><span id="minutos">00</span><small>MIN</small></div>
+        <div class="bloque-tiempo"><span id="segundos">00</span><small>SEG</small></div>
+    </div>
+
+    <p id="info-lugar" class="lugar-show">10 DE ABRIL | EL TEATRO (BSAS)</p>
+
+    <div class="contenedor-flyer-vivo" style="margin-top: 25px; padding: 0 10px; position: relative;">
+        <button onclick="cambiarFecha(-1)" class="btn-nav-flyer" style="left: 0;">&#10094;</button>
+        <button onclick="cambiarFecha(1)" class="btn-nav-flyer" style="right: 0;">&#10095;</button>
+
+        <img id="flyer-dinamico" src="img/bs1.png" alt="Flyer Show" class="flyer-resplandor">
+    </div>
+
+    <!-- REFERENCIAS DEL TOUR-->
+    <div class="wrapper-referencia">
+    <div class="cuadro-referencia-fijo">
+        <div class="linea-ref">
+            <i class="fas fa-calendar-day"></i>
+            <span>10 DE ABRIL | EL TEATRO (BSAS)</span>
         </div>
-        <p class="lugar-show">26 DE MARZO | LUZBELITO</p>
-        <!--FLAYER-------------------------------->
-        <div class="contenedor-flyer-vivo" style="margin-top: 25px; padding: 0 10px;">
-            <img src="img/lzbe2.jpeg" alt="Flyer Crazy Night en Luzbelito" class="flyer-resplandor">
-                 
+        <div class="linea-ref">
+            <i class="fas fa-calendar-day"></i>
+            <span>11 DE ABRIL | UNICLUB (BSAS)</span>
         </div>
-        <!--FIN FLAYER-------------------------------->
-    </section>
+        <!--<div class="linea-ref">
+            <i class="fas fa-ticket-alt"></i>
+            <span class="texto-destacado">ENTRADAS EN BIO / CONTACTO</span>-->
+        </div>
+    </div>
+</div>
+</section>
 
     <div id="cartel-en-vivo" class="live-flame-strip" style="display: none;">
         <div class="marquee-content">
@@ -194,6 +203,13 @@
         </div>
     </div>
 </section>
+<section id="agenda-2026" class="seccion-tour-completo">
+    <h2 class="section-title">FECHAS 2026 ⚡</h2>
+    
+    <div id="contenedor-fechas" class="grid-fechas">
+        </div>
+    </div> <div style="height: 50px;"></div> </section>
+</section>
 
     <nav class="footer-nav">
         <ul>
@@ -202,6 +218,7 @@
             <li><a href="#la-banda">LA BANDA</a></li>
             <li><a href="#fotos-banda">BOOK</a></li>
             <li><a href="#actuaciones" >VIVO</a></li>
+            <li><a href="#agenda-2026" >FECHAS</a></li>
             <li>
                 <a href="https://wa.me/5493518097087?text=Hola%20Crazy%20Night!%20Vi%20la%20web%20y%20quería%20consultar%20por%20una%20fecha..." 
                    target="_blank" 
