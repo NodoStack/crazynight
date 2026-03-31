@@ -40,119 +40,76 @@ window.addEventListener('load', () => {
     }
 
     // --- 2. SWIPER (Book de fotos) ---
-    var swiper = new Swiper(".mySwiperCards", {
-        effect: "coverflow",
-        grabCursor: true,
-        centeredSlides: true,
-        slidesPerView: "auto",
-        loop: true,
-        autoplay: { delay: 3000, disableOnInteraction: false },
-        coverflowEffect: { rotate: 0, stretch: -100, depth: 150, modifier: 1, slideShadows: false },
-    });
-
-    // --- 3. INICIAR SISTEMA DE GIRA ---
-    iniciarGiraYContador();
-
-});
-
-// --- LÓGICA DE GIRA (Flyers rotan, Contador queda fijo) ---
-const datosGira = [
-    {
-        titulo: "TOUR BS.AS. ⚡",
-        lugar: "10 DE ABRIL | EL TEATRO (BSAS)",
-        imagen: "img/bs1.png" 
-    },
-    {
-        titulo: "TOUR BS.AS. ⚡",
-        lugar: "11 DE ABRIL | UNICLUB (BSAS)",
-        imagen: "img/bs2.png" 
+    if (document.querySelector(".mySwiperCards")) {
+        var swiper = new Swiper(".mySwiperCards", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            loop: true,
+            autoplay: { delay: 3000, disableOnInteraction: false },
+            coverflowEffect: { rotate: 0, stretch: -100, depth: 150, modifier: 1, slideShadows: false },
+        });
     }
-];
 
-// FECHA FIJA: Siempre apunta al primer show de la gira
+    // --- 3. INICIAR SISTEMA DE GIRA (CONTADOR Y AGENDA) ---
+    iniciarGiraYContador();
+    renderizarAgenda();
+
+}); // <--- AQUÍ SE CIERRA EL WINDOW LOAD (ERROR CORREGIDO)
+
+// --- LÓGICA DE CONTADOR FIJO (Sin Slider) ---
 const FECHA_PROXIMO_SHOW = "2026-04-10T22:00:00"; 
 
-let indiceFlyer = 0;
-
 function iniciarGiraYContador() {
-    // 1. Iniciar el contador una sola vez (apuntando al 10 de abril)
     iniciarContadorFijo(FECHA_PROXIMO_SHOW);
-
-    // 2. Iniciar la rotación de flyers cada 6 segundos
-    setInterval(() => {
-        indiceFlyer = (indiceFlyer + 1) % datosGira.length;
-        actualizarSoloFlyer();
-    }, 6000);
-}
-
-function actualizarSoloFlyer() {
-    const info = datosGira[indiceFlyer];
+    
+    const titulo = document.getElementById('titulo-show');
+    const infoLugar = document.getElementById('info-lugar');
     const flyerImg = document.getElementById('flyer-dinamico');
+
+    if(titulo) titulo.innerText = "PRÓXIMO SHOW ⚡";
+    if(infoLugar) infoLugar.innerText = "10 DE ABRIL | EL TEATRO (BSAS)";
     
-    // Transición suave
-    flyerImg.style.opacity = "0";
-    
-    setTimeout(() => {
-        document.getElementById('titulo-show').innerText = info.titulo;
-        document.getElementById('info-lugar').innerText = info.lugar;
-        flyerImg.src = info.imagen;
-        flyerImg.style.opacity = "1";
-    }, 500);
+    // CAMBIÁ ESTA LÍNEA TAMBIÉN EN EL JS:
+    if(flyerImg) flyerImg.src = "img/fuego1.jpg"; 
 }
 
 function iniciarContadorFijo(fechaDestino) {
     const target = new Date(fechaDestino).getTime();
 
-    setInterval(() => {
+    const intervaloContador = setInterval(() => {
         const ahora = new Date().getTime();
         const distancia = target - ahora;
         const relojDiv = document.getElementById('reloj-regresivo');
         const cartelVivo = document.getElementById('cartel-en-vivo');
 
-        // BLINDAJE EN VIVO (Si hoy es 10 de abril y estamos en horario)
+        if (!relojDiv) return;
+
         if (distancia <= 0 && distancia > -(4 * 60 * 60 * 1000)) {
             relojDiv.style.display = "none";
             if(cartelVivo) cartelVivo.style.display = "block";
             return;
         }
 
-        // SI YA PASÓ EL SHOW DEL 10 (Aca podrías cambiar la fecha al 11 manualmente si querés)
         if (distancia < -(4 * 60 * 60 * 1000)) {
             relojDiv.innerHTML = "<h2 style='color:#888;'>¡LLEGÓ EL DÍA!</h2>";
+            clearInterval(intervaloContador);
             return;
         }
 
-        // ACTUALIZAR NÚMEROS (Fijo al 10 de abril)
         document.getElementById('dias').innerText = Math.floor(distancia / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
         document.getElementById('horas').innerText = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
         document.getElementById('minutos').innerText = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
         document.getElementById('segundos').innerText = Math.floor((distancia % (1000 * 60)) / 1000).toString().padStart(2, '0');
-        
     }, 1000);
 }
-//=====================================
-//SECCION FECHAS PASADAS
-// ACÁ AGREGÁS TODAS LAS FECHAS DEL AÑO (Pasadas y Futuras)
-//===================================
+
+// --- SECCIÓN AGENDA ---
 const todasLasFechas = [
-    {
-        fecha: "2026-03-26",
-        lugar: "LUZBELITO",
-        ciudad: "CÓRDOBA",
-        flyer: "img/lzbe2.jpeg"
-    },
-    {
-        fecha: "2026-04-10",
-        lugar: "EL TEATRO",
-        ciudad: "BS.AS.",
-        flyer: "img/bs1.png"
-    },
-    {
-        fecha: "2026-04-11",
-        lugar: "UNICLUB",
-        ciudad: "BS.AS.",
-        flyer: "img/bs2.png"
-    }
+    { fecha: "2026-03-26", lugar: "LUZBELITO", ciudad: "CÓRDOBA", flyer: "img/lzbe2.jpeg" },
+    { fecha: "2026-04-10", lugar: "OCEANARIO CLUB", ciudad: "BS.AS.", flyer: "img/bs2.png" },
+    { fecha: "2026-04-11", lugar: "LIVERPOOL BAR", ciudad: "BS.AS.", flyer: "img/bs1.png" }
 ];
 
 function renderizarAgenda() {
@@ -176,7 +133,7 @@ function renderizarAgenda() {
                     <span>${p[2]}</span>
                     <small>${meses[parseInt(p[1]) - 1]}</small>
                 </div>
-                <img src="${show.flyer}" class="flyer-min">
+                <img src="${show.flyer}" class="flyer-min" alt="${show.lugar}" onclick="abrirLightbox(this.src)">
                 <div class="info-texto">
                     <h4>${show.lugar}</h4>
                     <p>${show.ciudad}</p>
@@ -188,15 +145,51 @@ function renderizarAgenda() {
     });
     contenedor.innerHTML = html;
 }
-document.addEventListener('DOMContentLoaded', renderizarAgenda);
 
-// Función auxiliar para que la fecha se vea linda (Ej: 10 ABR)
-function formatearFecha(fechaStr) {
-    const meses = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
-    const d = new Date(fechaStr);
-    return `<span>${d.getDate() + 1}</span><small>${meses[d.getMonth()]}</small>`;
+// =========================================
+// FUNCIONES PARA CONTROLAR EL LIGHTBOX: CAJA OCULTA
+// =========================================
+
+function abrirLightbox(srcImagen) {
+    const lightbox = document.getElementById('lightbox-tour');
+    const lightboxImg = document.getElementById('lightbox-img-principal');
+    
+    if(!lightbox || !lightboxImg) return;
+    
+    // Seteamos la imagen
+    lightboxImg.src = srcImagen;
+    
+    // Mostramos el overlay con clase active
+    lightbox.style.display = 'flex'; 
+    setTimeout(() => {
+        lightbox.classList.add('active');
+    }, 10);
+    
+    // Bloquear scroll
+    document.body.style.overflow = 'hidden';
 }
 
-// Ejecutar al cargar
-document.addEventListener('DOMContentLoaded', renderizarAgenda);
+function cerrarLightbox() {
+    const lightbox = document.getElementById('lightbox-tour');
+    if(!lightbox) return;
 
+    lightbox.classList.remove('active');
+    
+    // Esperamos a que termine la animación para ocultar el div
+    setTimeout(() => {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }, 300);
+}
+
+// EVITAR QUE SE CIERRE AL TOCAR LA IMAGEN
+// Solo se cierra si tocás el fondo NEGRO o la X
+document.addEventListener('click', function(e) {
+    const lightbox = document.getElementById('lightbox-tour');
+    if (!lightbox || !lightbox.classList.contains('active')) return;
+
+    // Si el clic es en el fondo (fuera de la imagen) o en la X, cerramos
+    if (e.target.id === 'lightbox-tour' || e.target.classList.contains('lightbox-cerrar')) {
+        cerrarLightbox();
+    }
+});

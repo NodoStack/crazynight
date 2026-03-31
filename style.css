@@ -1518,6 +1518,117 @@ CUADRO DE REFERNCIA TOUR
         font-size: 13px;
     }
 }
+
+/* =========================================
+   ESTILOS PARA LIGHTBOX (EFECTO ZOOM FLYER)
+========================================= */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro con transparencia */
+    display: none; /* Oculto por defecto */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Por encima de todo */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(5px); /* Desenfoque de fondo opcional, muy pro */
+}
+
+/* Estado activo del Lightbox */
+.lightbox-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* La imagen dentro del Lightbox */
+.lightbox-img {
+    max-width: 90%;
+    max-height: 90vh; /* Ocupa máximo 90% del alto de la pantalla */
+    object-fit: contain; /* Mantiene la proporción sin recortar */
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.3); /* Un brillo rojo sutil rockero */
+    border-radius: 10px;
+    border: 3px solid #1a1a1a;
+    
+    /* Animación de entrada de la imagen */
+    transform: scale(0.7);
+    transition: transform 0.4s ease;
+}
+
+.lightbox-overlay.active .lightbox-img {
+    transform: scale(1);
+}
+
+/* Botón de cerrar (la "X") */
+.lightbox-cerrar {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: #fff;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+    user-select: none;
+    z-index: 10000;
+}
+
+.lightbox-cerrar:hover {
+    color: #ff0000;
+}
+
+/* Puntero de mano para las miniaturas en la card */
+.card-fecha img.flyer-min {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-fecha img.flyer-min:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+/* Spinner de carga sutil */
+.lightbox-loader {
+    display: none;
+    border: 4px solid #333;
+    border-top: 4px solid #ff0000;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* =========================================
+   MEDIA QUERIES (ADAPTACIÓN A CELULARES)
+========================================= */
+@media (max-width: 768px) {
+    .lightbox-img {
+        max-width: 95%; /* Un poco más ancho en celular */
+        max-height: 85vh; /* Un poco menos alto para dejar aire */
+    }
+    
+    .lightbox-cerrar {
+        top: 10px;
+        right: 15px;
+        font-size: 40px; /* X más chica en celular */
+        background-color: rgba(0,0,0,0.5); /* Fondo para que se vea bien sobre la foto */
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        line-height: 42px;
+        text-align: center;
+    }
+}
 /* --- EFECTO INCLINACIÓN 3D (Solo en PC) --- 
 .center-content {
     perspective: 1000px; /* Clave para el efecto 3D 
