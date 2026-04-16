@@ -58,8 +58,9 @@ window.addEventListener('load', () => {
 
 }); // <--- AQUÍ SE CIERRA EL WINDOW LOAD (ERROR CORREGIDO)
 
-// --- LÓGICA DE CONTADOR FIJO (Sin Slider) ---
-const FECHA_PROXIMO_SHOW = "2026-04-10T22:00:00"; 
+// --- LÓGICA DE CONTADOR FIJO ---
+// Seteamos la nueva fecha: 19 de Abril a las 23:30hs
+const FECHA_PROXIMO_SHOW = "2026-04-19T23:30:00"; 
 
 function iniciarGiraYContador() {
     iniciarContadorFijo(FECHA_PROXIMO_SHOW);
@@ -69,10 +70,8 @@ function iniciarGiraYContador() {
     const flyerImg = document.getElementById('flyer-dinamico');
 
     if(titulo) titulo.innerText = "PRÓXIMO SHOW ⚡";
-    if(infoLugar) infoLugar.innerText = "10 DE ABRIL | EL TEATRO (BSAS)";
-    
-    // CAMBIÁ ESTA LÍNEA TAMBIÉN EN EL JS:
-    if(flyerImg) flyerImg.src = "img/fuego1.jpg"; 
+    if(infoLugar) infoLugar.innerText = "19 DE ABRIL | LUZBELITO (CÓRDOBA)";
+   
 }
 
 function iniciarContadorFijo(fechaDestino) {
@@ -86,18 +85,21 @@ function iniciarContadorFijo(fechaDestino) {
 
         if (!relojDiv) return;
 
+        // Si es la hora del show (durante 4 horas)
         if (distancia <= 0 && distancia > -(4 * 60 * 60 * 1000)) {
             relojDiv.style.display = "none";
             if(cartelVivo) cartelVivo.style.display = "block";
             return;
         }
 
+        // Si ya terminó el show
         if (distancia < -(4 * 60 * 60 * 1000)) {
             relojDiv.innerHTML = "<h2 style='color:#888;'>¡LLEGÓ EL DÍA!</h2>";
             clearInterval(intervaloContador);
             return;
         }
 
+        // Cálculos del tiempo
         document.getElementById('dias').innerText = Math.floor(distancia / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
         document.getElementById('horas').innerText = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
         document.getElementById('minutos').innerText = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
@@ -105,11 +107,12 @@ function iniciarContadorFijo(fechaDestino) {
     }, 1000);
 }
 
-// --- SECCIÓN AGENDA ---
+// --- SECCIÓN AGENDA ACTUALIZADA ---
 const todasLasFechas = [
     { fecha: "2026-03-26", lugar: "LUZBELITO", ciudad: "CÓRDOBA", flyer: "img/lzbe2.jpeg" },
     { fecha: "2026-04-10", lugar: "OCEANARIO CLUB", ciudad: "BS.AS.", flyer: "img/bs2.png" },
-    { fecha: "2026-04-11", lugar: "LIVERPOOL BAR", ciudad: "BS.AS.", flyer: "img/bs1.png" }
+    { fecha: "2026-04-11", lugar: "LIVERPOOL BAR", ciudad: "BS.AS.", flyer: "img/bs1.png" },
+    { fecha: "2026-04-19", lugar: "LUZBELITO", ciudad: "CÓRDOBA", flyer: "img/lzbe2.jpeg" }
 ];
 
 function renderizarAgenda() {
