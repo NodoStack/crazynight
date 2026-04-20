@@ -69,6 +69,41 @@
         </div>
     </section>
 
+    <!----------GRID CONETENEDOR PARA FLAYERS...----->
+    
+    <!------------------------------------------------>
+    <div class="contenedor-principal-show" style="text-align: center; width: 100%; overflow: hidden;">
+    <section id="seccion-contador" class="contenedor-cuenta-regresiva">
+        <h3 id="titulo-show">PRÓXIMO SHOW ⚡</h3>
+
+        <div id="reloj-regresivo">
+            <div class="bloque-tiempo"><span id="dias">00</span><small>DÍAS</small></div>
+            <div class="bloque-tiempo"><span id="horas">00</span><small>HORAS</small></div>
+            <div class="bloque-tiempo"><span id="minutos">00</span><small>MIN</small></div>
+            <div class="bloque-tiempo"><span id="segundos">00</span><small>SEG</small></div>
+        </div>
+
+        <p id="info-lugar" class="lugar-show">🔥 PRÓXIMAS FECHAS IMPERDIBLES 🔥</p>
+
+        <div class="contenedor-flyers-flex" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 25px; padding: 0 15px;">
+            
+            <div class="wrapper-flyer" style="max-width: 350px; flex: 1 1 300px;">
+                <img id="flyer-dinamico" src="img/jueves.jpeg" alt="Flyer Show 1" class="flyer-resplandor" onclick="abrirLightbox(this.src)" style="cursor:pointer; width: 100%; height: auto; border-radius: 8px;">
+            </div>
+
+            <div class="wrapper-flyer" style="max-width: 350px; flex: 1 1 300px;">
+                <img id="flyer-dinamico-2" src="img/2504.jpeg" alt="Flyer Show 2" class="flyer-resplandor" onclick="abrirLightbox(this.src)" style="cursor:pointer; width: 100%; height: auto; border-radius: 8px;">
+            </div>
+            
+        </div>
+
+        <div class="wrapper-referencia" style="margin-top: 30px;">
+            <div id="lista-referencias" class="cuadro-referencia-fijo"></div>
+        </div>
+    </section>
+</div>
+<!-------------------FIN CONTENEDOR GRID--------------------------->
+
   <!--<div class="contenedor-principal-show" style="text-align: center;">
     <section id="seccion-contador" class="contenedor-cuenta-regresiva">
         <h3 id="titulo-show">PRÓXIMO SHOW ⚡</h3>
