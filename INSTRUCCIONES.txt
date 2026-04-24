@@ -1,0 +1,21 @@
+/* ===========================================================================
+   📖 GUÍA RÁPIDA PARA ACTUALIZAR FECHAS - CRAZY NIGHT
+===========================================================================
+   
+   PASO 1: Subir el nuevo flyer a la carpeta 'img/'.
+   PASO 2: Bajar hasta la lista 'todasLasFechas'.
+   PASO 3: Agregar el nuevo show siguiendo este formato:
+
+   { 
+      fecha: "2026-04-23T23:30:00",  <-- El "T23:30:00" activa el CONTADOR
+      lugar: "NOMBRE DEL BOLICHE", 
+      ciudad: "CÓRDOBA", 
+      flyer: "img/nombre-del-archivo.jpeg" 
+   },
+
+   ⚠️ NOTA IMPORTANTE:
+   - Si ponés la hora (ej: T23:30:00), el flyer sale GRANDE arriba.
+   - Si NO ponés la hora (ej: "2026-04-23"), solo sale en la AGENDA de abajo.
+   - A las 6:00 AM del día del show, el sistema quita el flyer de arriba solo.
+===========================================================================
+*/

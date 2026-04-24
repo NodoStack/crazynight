@@ -1,35 +1,23 @@
 // =========================================================
-// 🚀 CONFIGURACIÓN DE PRÓXIMOS SHOWS (MODIFICAR AQUÍ)
+// 🚀 CONFIGURACIÓN DE SHOWS (LA LISTA MANDA TODO)
 // =========================================================
-
-// 1. FECHA DEL CONTADOR (Formato: AAAA-MM-DDTHH:MM:SS)
-const FECHA_PROXIMO_SHOW = "2026-04-23T23:30:00"; 
-
-// 2. TEXTOS DEL ENCABEZADO
-const TITULO_DINAMICO = "PRÓXIMO SHOW ⚡";
-const LUGAR_DINAMICO = "🔥 23 DE ABRIL | LUZBELITO POOL BAR (CÓRDOBA) 🔥";
-
-// 3. IMÁGENES DE LOS FLYERS (Si hay uno solo, poné el mismo en ambos o dejá el 2 vacío)
-const FLYER_PRINCIPAL = "img/jueves.jpeg";
-const FLYER_SECUNDARIO = "img/2504.jpeg"; // <--- Cambiá este cuando tengas el segundo
-const FLYER_SECUNDARIO_TEXTO= "25 DE ABRRIL | BAD COMPANY (TILLARD 1224) "
-
-// 4. LISTA DE LA AGENDA (La que aparece abajo de todo)
+// El sistema mostrará automáticamente los flyers de las fechas que NO han pasado.
+// A las 6:00 AM del día del show, el flyer desaparece solo.
 const todasLasFechas = [
     { fecha: "2026-03-26", lugar: "LUZBELITO", ciudad: "CÓRDOBA", flyer: "img/lzbe2.jpeg" },
     { fecha: "2026-04-10", lugar: "OCEANARIO CLUB", ciudad: "BS.AS.", flyer: "img/bs2.png" },
     { fecha: "2026-04-11", lugar: "LIVERPOOL BAR", ciudad: "BS.AS.", flyer: "img/bs1.png" },
     { fecha: "2026-04-19", lugar: "LUZBELITO", ciudad: "CÓRDOBA", flyer: "img/19-04.jpeg" },
 
-    // --- NUEVAS FECHAS ACTIVAS ---
+    // --- PRÓXIMAS FECHAS (Modificá o agregá aquí) ---
     { 
-        fecha: "2026-04-23", 
+        fecha: "2026-04-23T23:30:00", 
         lugar: "LUZBELITO POOL BAR", 
         ciudad: "CÓRDOBA", 
         flyer: "img/jueves.jpeg" 
     },
     { 
-        fecha: "2026-04-25", 
+        fecha: "2026-04-25T21:00:00", 
         lugar: "BAD COMPANY - TILLARD 1224", 
         ciudad: "CÓRDOBA", 
         flyer: "img/2504.jpeg" 
@@ -37,7 +25,7 @@ const todasLasFechas = [
 ];
 
 // =========================================================
-// ⚙️ LÓGICA DEL SISTEMA (NO TOCAR SI NO ES NECESARIO)
+// ⚙️ LÓGICA DEL SISTEMA (NO TOCAR)
 // =========================================================
 
 window.addEventListener('load', () => {
@@ -100,31 +88,71 @@ window.addEventListener('load', () => {
 });
 
 function iniciarGiraYContador() {
-    iniciarContadorFijo(FECHA_PROXIMO_SHOW);
+    const ahora = new Date();
     
+    // Filtrar shows que NO han pasado (Hora de corte: 6:00 AM del día del show)
+    const proximosShows = todasLasFechas.filter(show => {
+        if (!show.fecha.includes('T')) return false; // Solo procesa las que tienen hora
+        
+        const fechaShow = new Date(show.fecha);
+        const horaCorte = new Date(fechaShow);
+        horaCorte.setHours(6, 0, 0, 0); // 6 AM del día del show
+        
+        // Si el show es futuro O es hoy pero antes de las 6 AM
+        return fechaShow.getTime() > ahora.getTime() || ahora.getTime() < horaCorte.getTime();
+    });
+
+    const contenedorPrincipal = document.querySelector('.contenedor-principal-show');
+
+    // SI NO HAY SHOWS PRÓXIMOS, OCULTA TODO
+    if (proximosShows.length === 0) {
+        if(contenedorPrincipal) contenedorPrincipal.style.display = 'none';
+        return;
+    }
+
+    const showActual = proximosShows[0];
+    const showSiguiente = proximosShows[1];
+
+    iniciarContadorFijo(showActual.fecha);
+
     const titulo = document.getElementById('titulo-show');
     const infoLugar = document.getElementById('info-lugar');
     const flyer1 = document.getElementById('flyer-dinamico');
     const flyer2 = document.getElementById('flyer-dinamico-2');
     const refContenedor = document.getElementById('lista-referencias');
 
-    if(titulo) titulo.innerText = TITULO_DINAMICO;
-    if(infoLugar) infoLugar.innerText = LUGAR_DINAMICO;
-    if(flyer1) flyer1.src = FLYER_PRINCIPAL;
-    if(flyer2) flyer2.src = FLYER_SECUNDARIO;
+    if(titulo) titulo.innerText = "PRÓXIMO SHOW ⚡";
+    if(infoLugar) infoLugar.innerText = `🔥 ${showActual.lugar} 🔥`;
+    
+    // Asignar Flyer 1
+    if(flyer1) flyer1.src = showActual.flyer;
+    
+    // Asignar Flyer 2 o apagar su contenedor si no existe
+    if(flyer2) {
+        if(showSiguiente) {
+            flyer2.src = showSiguiente.flyer;
+            flyer2.closest('.wrapper-flyer').style.display = 'block';
+        } else {
+            flyer2.closest('.wrapper-flyer').style.display = 'none';
+        }
+    }
 
-    // INYECTO LAS VARIABLES  en el HTML
+    // Actualizar Cuadro de Referencias
     if(refContenedor) {
-        refContenedor.innerHTML = `
+        let htmlRefs = `
             <div class="linea-ref">
                 <i class="fas fa-calendar-day"></i>
-                <span>${LUGAR_DINAMICO.replace(/🔥/g, '')}</span> 
-            </div>
-            <div class="linea-ref">
-                <i class="fas fa-calendar-day"></i>
-                <span>${FLYER_SECUNDARIO_TEXTO}</span>
-            </div>
-        `;
+                <span>${showActual.lugar}</span> 
+            </div>`;
+        
+        if(showSiguiente) {
+            htmlRefs += `
+                <div class="linea-ref">
+                    <i class="fas fa-calendar-day"></i>
+                    <span>${showSiguiente.lugar}</span>
+                </div>`;
+        }
+        refContenedor.innerHTML = htmlRefs;
     }
 }
 
@@ -139,15 +167,19 @@ function iniciarContadorFijo(fechaDestino) {
 
         if (!relojDiv) return;
 
+        // CARTEL EN VIVO (Muestra el cartel si falta menos de 0 y pasaron menos de 4hs)
         if (distancia <= 0 && distancia > -(4 * 60 * 60 * 1000)) {
             relojDiv.style.display = "none";
             if(cartelVivo) cartelVivo.style.display = "block";
             return;
         }
 
+        // FIN DEL SHOW (Pasadas las 4hs de inicio)
         if (distancia < -(4 * 60 * 60 * 1000)) {
             relojDiv.innerHTML = "<h2 style='color:#f00; font-size: 1.5rem;'>¡MANTENIENDO VIVA LA LLAMA!</h2>";
             clearInterval(intervaloContador);
+            // Recarga automática para que el filtro limpie el flyer viejo
+            setTimeout(() => location.reload(), 10000);
             return;
         }
 
@@ -167,7 +199,7 @@ function renderizarAgenda() {
     const meses = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
 
     todasLasFechas.forEach(show => {
-        const p = show.fecha.split('-');
+        const p = show.fecha.split('T')[0].split('-');
         const fShow = new Date(parseInt(p[0]), parseInt(p[1]) - 1, parseInt(p[2]));
         const yaPaso = fShow < hoy;
         html += `
@@ -183,6 +215,7 @@ function renderizarAgenda() {
     contenedor.innerHTML = html;
 }
 
+// --- LIGHTBOX ---
 function abrirLightbox(srcImagen) {
     const lb = document.getElementById('lightbox-tour');
     const img = document.getElementById('lightbox-img-principal');
