@@ -259,3 +259,21 @@ function closeToast() {
         toast.classList.remove('show');
     }
 }
+//--- FUNCIÓN PARA ABRIR LOS VIDEOS EN EL MINUTO EXACTO --- */
+function abrirVideoTV(segundos) {
+    const url = "https://www.youtube.com/watch?v=G-AaguB7H2c&t=" + segundos + "s";
+    
+    // Configuramos dimensiones para PC
+    const ancho = 950;
+    const alto = 650;
+    const posicion_x = (screen.width / 2) - (ancho / 2);
+    const posicion_y = (screen.height / 2) - (alto / 2);
+
+    // Intentamos abrir el popup
+    const popup = window.open(url, "CrazyNightTV", `width=${ancho},height=${alto},left=${posicion_x},top=${posicion_y},toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes`);
+
+    // Si el popup fue bloqueado o estamos en un celular (donde popup suele fallar)
+    if (!popup || popup.closed || typeof popup.closed == 'undefined') {
+        window.open(url, '_blank'); // Abre en pestaña nueva normal
+    }
+}
