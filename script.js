@@ -239,3 +239,23 @@ document.addEventListener('click', (e) => {
         cerrarLightbox();
     }
 });
+
+/* --- LÓGICA DE LA NOTIFICACIÓN SESSIONS --- */
+
+// Función para mostrar el Toast después de 3 segundos
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const toast = document.getElementById('session-toast');
+        if (toast) {
+            toast.classList.add('show');
+        }
+    }, 3000); // 3000 milisegundos = 3 segundos
+});
+
+// Función para cerrar el Toast
+function closeToast() {
+    const toast = document.getElementById('session-toast');
+    if (toast) {
+        toast.classList.remove('show');
+    }
+}

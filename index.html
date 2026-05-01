@@ -198,6 +198,47 @@
     </div>
 </section>
 
+<section id="especial-tv" style="padding: 60px 15px; background: #0a0a0a; text-align: center;">
+    <h2 style="color: #fff; font-family: 'Montserrat', sans-serif; letter-spacing: 2px; margin-bottom: 30px;">
+        CRAZY NIGHT EN "UNA TARDE DIFERENTE" ⚡
+    </h2>
+    
+    <div style="display: flex; flex-wrap: wrap; gap: 15px; max-width: 1000px; margin: 0 auto; justify-content: center; align-items: stretch;">
+        
+        <!-- VIDEO GRANDE -->
+        <div onclick="abrirVideoTV(3480)" style="flex: 2 1 500px; cursor: pointer; position: relative; border: 2px solid #f39c12; border-radius: 8px; overflow: hidden; min-height: 345px;">
+            <img src="https://img.youtube.com/vi/G-AaguB7H2c/maxresdefault.jpg" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4);">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%;">
+                <i class="fab fa-youtube" style="color: #ff0000; font-size: 70px;"></i>
+                <h3 style="color: white; font-size: 1.4rem; margin-top: 10px; background: rgba(0,0,0,0.7); display: inline-block; padding: 8px 20px;">ENTREVISTA COMPLETA</h3>
+                <p style="color: #f39c12; font-weight: bold; margin-top: 10px;">@Dartv Streaming</p>
+            </div>
+        </div>
+
+        <!-- COLUMNA LATERAL -->
+        <div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 15px;">
+            <div onclick="abrirVideoTV(4090)" style="flex: 1; cursor: pointer; position: relative; border: 2px solid #333; border-radius: 8px; overflow: hidden; min-height: 165px;">
+                <img src="https://img.youtube.com/vi/G-AaguB7H2c/hqdefault.jpg" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6);">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%;">
+                    <p style="color: white; font-size: 0.9rem; font-weight: bold; text-transform: uppercase;">PRIMER ACÚSTICO</p>
+                    <span style="color: #f39c12; font-size: 0.8rem;">(Acústico en vivo)</span>
+                </div>
+            </div>
+
+            <div onclick="abrirVideoTV(4678)" style="flex: 1; cursor: pointer; position: relative; border: 2px solid #333; border-radius: 8px; overflow: hidden; min-height: 165px;">
+                <img src="https://img.youtube.com/vi/G-AaguB7H2c/hqdefault.jpg" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6);">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%;">
+                    <p style="color: white; font-size: 0.9rem; font-weight: bold; text-transform: uppercase;">SEGUNDO ACÚSTICO</p>
+                    <span style="color: #f39c12; font-size: 0.8rem;">(Acústico en vivo)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p style="color: #ccc; margin-top: 25px; font-style: italic; max-width: 700px; margin-left: auto; margin-right: auto;">
+        "Charla y rock en los estudios de Dartv Streaming. No te pierdas esta versión íntima de nuestros clásicos."
+    </p>
+</section>
 
     <section id="actuaciones" class="video-section">
     <h2 class="section-title">VIVO EN EL ESCENARIO</h2>
@@ -235,6 +276,7 @@
             <!--<li><a href="#" class="tooltip-link" data-tooltip="EN CONSTRUCCIÓN ⚡">LA BANDA</a></li>-->
             <li><a href="#la-banda">LA BANDA</a></li>
             <li><a href="#fotos-banda">BOOK</a></li>
+            <li><a href="#especial-tv">SESSIONS</a></li>
             <li><a href="#actuaciones" >VIVO</a></li>
             <li><a href="#agenda-2026" >FECHAS</a></li>
             <li>
@@ -298,5 +340,18 @@
     });
 </script>
 
+<!-- Notificación Toast de Sessions -->
+<div id="session-toast" class="toast-sessions">
+    <div class="toast-content">
+        <div class="toast-icon">⚡</div>
+        <div class="toast-text">
+            <strong>¡NUEVA SESSION!</strong>
+            <span>Mirá nuestro acústico en Dartv</span>
+        </div>
+        <!-- El enlace lleva al ID de la sección que creamos antes -->
+        <a href="#especial-tv" class="toast-btn" onclick="closeToast()">VER AHORA</a>
+        <button class="toast-close" onclick="closeToast()">×</button>
+    </div>
+</div>
 </body>
 </html>
