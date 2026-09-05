@@ -277,3 +277,32 @@ function abrirVideoTV(segundos) {
         window.open(url, '_blank'); // Abre en pestaña nueva normal
     }
 }
+
+
+//==========================
+// MODAL
+//==========================
+function abrirModalMC() {
+    const modal = document.getElementById('modal-mc');
+    const iframe = document.getElementById('iframe-mc');
+    
+    // Carga la URL solo al abrir para optimizar la página
+    iframe.src = 'https://mcserviciosdigitales.netlify.app/';
+    modal.style.display = 'flex';
+}
+
+function cerrarModalMC() {
+    const modal = document.getElementById('modal-mc');
+    const iframe = document.getElementById('iframe-mc');
+    
+    modal.style.display = 'none';
+    iframe.src = ''; // Detiene la carga en segundo plano
+}
+
+// Opcional: Cerrar si hacen clic fuera del contenedor del iframe
+window.onclick = function(event) {
+    const modal = document.getElementById('modal-mc');
+    if (event.target === modal) {
+        cerrarModalMC();
+    }
+}
