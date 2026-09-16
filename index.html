@@ -113,6 +113,54 @@
 </div>
 <!-------------------FIN CONTENEDOR GRID--------------------------->
 
+<!-- ==========================================================
+     SECCIÓN NOVEDADES: PRÓXIMO LANZAMIENTO "SER EL REY"
+     ========================================================== -->
+<section id="novedades" style="background: radial-gradient(circle, #2a0808 0%, #0a0a0a 100%); border-top: 2px solid #ff0055; border-bottom: 2px solid #ff0055; padding: 60px 15px; text-align: center;">
+    <div style="max-width: 900px; margin: 0 auto;">
+        
+        <span style="background: #ff0055; color: #fff; font-weight: bold; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; display: inline-block; margin-bottom: 15px;">
+            🎬 PRÓXIMO ESTRENO · 26 SEPTIEMBRE
+        </span>
+
+        <h2 style="color: #fff; font-size: 2.2rem; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 10px 0;">
+            "SER EL REY" <span style="color: #ff0055;">(LYRIC VIDEO)</span>
+        </h2>
+
+        <p style="color: #ccc; max-width: 650px; margin: 0 auto 25px auto; font-size: 0.95rem; line-height: 1.6;">
+            El nuevo lanzamiento de Crazy Night llega con su <strong>Lyric Video oficial</strong>. Una propuesta pensada para descubrir el mensaje detrás de la canción, aprenderse la letra y cantar a la par a todo volumen
+        </p>
+
+        <!-- CONTADOR REGRESIVO INDEPENDIENTE (LANZAMIENTO) -->
+        <div id="reloj-estreno" style="display: flex; justify-content: center; gap: 15px; margin: 25px 0;">
+            <div style="background: rgba(255, 0, 85, 0.15); border: 1px solid #ff0055; padding: 12px; border-radius: 8px; min-width: 75px;">
+                <span id="estreno-dias" style="color: #fff; font-size: 1.8rem; font-weight: bold; display: block;">00</span>
+                <small style="color: #ff0055; font-size: 0.7rem; font-weight: bold;">DÍAS</small>
+            </div>
+            <div style="background: rgba(255, 0, 85, 0.15); border: 1px solid #ff0055; padding: 12px; border-radius: 8px; min-width: 75px;">
+                <span id="estreno-horas" style="color: #fff; font-size: 1.8rem; font-weight: bold; display: block;">00</span>
+                <small style="color: #ff0055; font-size: 0.7rem; font-weight: bold;">HORAS</small>
+            </div>
+            <div style="background: rgba(255, 0, 85, 0.15); border: 1px solid #ff0055; padding: 12px; border-radius: 8px; min-width: 75px;">
+                <span id="estreno-minutos" style="color: #fff; font-size: 1.8rem; font-weight: bold; display: block;">00</span>
+                <small style="color: #ff0055; font-size: 0.7rem; font-weight: bold;">MIN</small>
+            </div>
+            <div style="background: rgba(255, 0, 85, 0.15); border: 1px solid #ff0055; padding: 12px; border-radius: 8px; min-width: 75px;">
+                <span id="estreno-segundos" style="color: #fff; font-size: 1.8rem; font-weight: bold; display: block;">00</span>
+                <small style="color: #ff0055; font-size: 0.7rem; font-weight: bold;">SEG</small>
+            </div>
+        </div>
+
+        <!-- TAPA DEL DISCO / SINGLE -->
+        <div style="margin-top: 25px;">
+            <img src="img/novedad.png" alt="Tapa del sencillo Ser el Rey" class="tapa-latido">
+        </div>
+
+    </div>
+</section>
+<!-- ==========================================================
+     SECCIÓN BOOK DE FOTOS
+     ========================================================== -->
 
    <section id="fotos-banda" class="carousel-section">
         <h2 class="section-title">BOOK DE FOTOS</h2>
@@ -279,6 +327,7 @@
             <li><a href="#especial-tv">SESSIONS</a></li>
             <li><a href="#actuaciones" >VIVO</a></li>
             <li><a href="#agenda-2026" >FECHAS</a></li>
+            <li><a href="#novedades">NOVEDADES</a></li>
             <li>
                 <a href="https://wa.me/5493518097087?text=Hola%20Crazy%20Night!%20Vi%20la%20web%20y%20quería%20consultar%20por%20una%20fecha..." 
                    target="_blank" 
@@ -349,7 +398,7 @@
 </script>
 
 <!-- Notificación Toast de Sessions -->
-<div id="session-toast" class="toast-sessions">
+<!--<div id="session-toast" class="toast-sessions">
     <div class="toast-content">
         <div class="toast-icon">⚡</div>
         <div class="toast-text">
@@ -357,9 +406,21 @@
             <span>Mirá nuestro acústico en Dartv</span>
         </div>
         <!-- El enlace lleva al ID de la sección que creamos antes -->
-        <a href="#especial-tv" class="toast-btn" onclick="closeToast()">VER AHORA</a>
+        <!--<a href="#especial-tv" class="toast-btn" onclick="closeToast()">VER AHORA</a>
         <button class="toast-close" onclick="closeToast()">×</button>
+    </div> -->
+<!-- NUEVO TOAST FLOTANTE: ESTRENO "SER EL REY" -->
+<div id="novedad-toast" class="toast-novedad" style="border-left: 4px solid #ff0055;">
+    <div class="toast-content">
+        <div class="toast-icon" style="color: #ff0055;">👑</div>
+        <div class="toast-text">
+            <strong>¡PRÓXIMO ESTRENO!</strong>
+            <span>26 SEPT · "Ser el Rey" (Lyric Video)</span>
+        </div>
+        <a href="#novedades" class="toast-btn" style="background: #ff0055; color: #fff;" onclick="closeToastNovedad()">VER MÁS</a>
+        <button class="toast-close" onclick="closeToastNovedad()">×</button>
     </div>
+</div>
 </div>
 </body>
 </html>

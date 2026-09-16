@@ -306,3 +306,65 @@ window.onclick = function(event) {
         cerrarModalMC();
     }
 }
+
+//=======================================
+//  CONTADOR DE NOVEDADES
+//=======================================
+function iniciarCuentaEstreno() {
+        // Fecha de estreno: 26 de Septiembre de 2026 a las 00:00 hs
+        const fechaEstreno = new Date("September 26, 2026 00:00:00").getTime();
+
+        const intervaloEstreno = setInterval(() => {
+            const ahora = new Date().getTime();
+            const diferencia = fechaEstreno - ahora;
+
+            if (diferencia <= 0) {
+                clearInterval(intervaloEstreno);
+                const relojContainer = document.getElementById("reloj-estreno");
+                if (relojContainer) {
+                    relojContainer.innerHTML = "<h3 style='color:#ff0055; font-size:1.5rem;'>¡ESTRENO DISPONIBLE EN PLATAFORMAS! 🔥</h3>";
+                }
+                return;
+            }
+
+            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+            if (document.getElementById("estreno-dias")) {
+                document.getElementById("estreno-dias").innerText = dias < 10 ? '0' + dias : dias;
+                document.getElementById("estreno-horas").innerText = horas < 10 ? '0' + horas : horas;
+                document.getElementById("estreno-minutos").innerText = minutos < 10 ? '0' + minutos : minutos;
+                document.getElementById("estreno-segundos").innerText = segundos < 10 ? '0' + segundos : segundos;
+            }
+        }, 1000);
+    }
+
+    document.addEventListener("DOMContentLoaded", iniciarCuentaEstreno);
+
+//=======================================
+//  FUNCIONES DEL TOAST DE NOVEDAD
+//=======================================
+function closeToastNovedad() {
+    const toastNovedad = document.getElementById("novedad-toast");
+    if (toastNovedad) {
+        toastNovedad.classList.remove("show");
+    }
+}
+
+//=======================================
+//  INICIALIZACIÓN AL CARGAR LA PÁGINA
+//=======================================
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Arrancar el contador del estreno
+    iniciarCuentaEstreno();
+
+    // 2. Hacer bajar el Toast de Novedad después del delay deseado (ej: 1000ms = 1 segundo)
+    setTimeout(() => {
+        const toastNovedad = document.getElementById("novedad-toast");
+        if (toastNovedad) {
+            toastNovedad.classList.add("show");
+        }
+    }, 1000); 
+});
